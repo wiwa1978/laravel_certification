@@ -9,6 +9,20 @@ use App\Models\Modules\Order;
 
 class PurchaseController extends Controller
 {
+
+    /**
+    * Show order page.
+    *
+    * @var App\Product $product
+    * @return Illuminate\View\View
+    */
+    public function showOrder(Product $product)
+    {
+        return view('frontend.modules.order', ['product' => $product]);
+    }
+
+
+
     /**
     * Get all orders.
     *

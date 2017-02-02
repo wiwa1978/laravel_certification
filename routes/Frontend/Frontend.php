@@ -20,13 +20,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('product', 'ProductController@index')->name('product');
 
 
+        Route::get('order/{product}', 'PurchaseController@showOrder')->name('show-order');
+
          /*
          * Order Specific
          */
 
          Route::get('order', 'PurchaseController@index')->name('order-list');
  
-         Route::post('order/{product}', 'PurchaseController@payWithStripe')->name('order');
+         Route::post('order', 'PurchaseController@payWithStripe')->name('order-purchase');
      
     });
 

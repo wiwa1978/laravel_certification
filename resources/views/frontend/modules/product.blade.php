@@ -12,32 +12,21 @@
 
                       <div class="row">
                             @foreach ($products as $product)
-                                <form action="{{ route('frontend.modules.order', $product->id) }}" method="POST">
-                                    {{csrf_field() }}
-                                    <div class="col-sm-5 col-md-5">
+                                
+                                    <div class="col-sm-4 col-md-4">
                                         <div class="thumbnail">
                                             <div class="caption">
                                                 <h3>{{ $product->name }}</h3>
                                                 <p>{{ $product->small_description }}</p>
-                                                <p>Buy for ${{ substr_replace($product->price, '.', 2, 0) }}</p>
                                                 <p>
-                        
-                                                <script
-                                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                    data-key="{{ env('STRIPE_PUBLIC') }}"
-                                                    data-amount="{{ $product->price }}"
-                                                    data-name="Stripe.com"
-                                                    data-description="Widget"
-                                                    data-locale="auto"
-                                                    data-currency="usd">
-                                                </script>
-                                                       
+                                                
+                                                <a href="{{ URL::route('frontend.modules.show-order', $product->id) }}" class="btn btn-primary"> Buy for ${{ substr_replace($product->price, '.', 2, 0) }}</a>                                                  
                                                   
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                               
                             @endforeach
                         </div><!--row-->
 
@@ -49,3 +38,6 @@
 
     </div><!-- row -->
 @endsection
+
+
+
