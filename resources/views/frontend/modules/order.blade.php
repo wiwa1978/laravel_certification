@@ -83,15 +83,15 @@
 
 
 @section('after-scripts')
-<script
-                                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                    data-key="{{ env('STRIPE_PUBLIC') }}"
-                                                    data-amount="{{ $product->price }}"
-                                                    data-name="Stripe.com"
-                                                    data-description="Widget"
-                                                    data-locale="auto"
-                                                    data-currency="usd">
-                                                </script>
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ env('STRIPE_PUBLIC') }}"
+        data-amount="{{ $product->price }}"
+        data-name="Stripe.com"
+        data-description="Widget"
+        data-locale="auto"
+        data-currency="usd">
+    </script>
 @endsection
 
 
