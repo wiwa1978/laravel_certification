@@ -18,17 +18,15 @@ Route::group(['middleware' => 'auth'], function () {
         * Product Specific
         */
         Route::get('product', 'ProductController@index')->name('product');
-
-
         Route::get('order/{product}', 'PurchaseController@showOrder')->name('show-order');
 
          /*
          * Order Specific
          */
 
-         Route::get('order', 'PurchaseController@index')->name('order-list');
+         //Route::get('order', 'PurchaseController@index')->name('order-list');
  
-         Route::post('order', 'PurchaseController@payWithStripe')->name('order-purchase');
+         Route::post('order/{product}', 'PurchaseController@payWithStripe')->name('order-purchase');
      
     });
 
@@ -49,6 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('profile/update', 'ProfileController@update')->name('profile.update');
 
 
+        Route::get('questions', 'QuestionController@getQuestions')->name('questions');
+        Route::get('questions/{exam}', 'QuestionController@getSingleExam')->name('questions-exam');
+
+        Route::get('exams', 'ExamController@getAllExams')->name('exams');
+        Route::get('exams/{product}', 'ExamController@getExamsPerProduct')->name('product-exam');
+        Route::post('exam/result/{exam}', 'QuestionController@calculateResultforExam')->name('exam-result');
 
 
     });

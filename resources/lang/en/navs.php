@@ -33,8 +33,10 @@ return [
         ],
         //Added by Wim
         'modules' => [
-            'product'   => 'Product',
-            'overview'     => 'Product overview',
+            'product'               => 'Product',
+            'product-overview'      => 'Product overview: all certifications',
+            'exam-overview'         => 'Exam overview',
+            'question-overview'     => 'Question overview',
         ]
     ],
 ];

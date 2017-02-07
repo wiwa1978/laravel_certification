@@ -6,7 +6,7 @@
         <div class="col-xs-12">
 
             <div class="panel panel-default">
-                <div class="panel-heading">{{ trans('navs.frontend.product.overview') }}</div>
+                <div class="panel-heading">{{ trans('navs.frontend.modules.product-overview') }}</div>
 
                 <div class="panel-body">
 
@@ -19,8 +19,17 @@
                                                 <h3>{{ $product->name }}</h3>
                                                 <p>{{ $product->small_description }}</p>
                                                 <p>
+                                                    @if (! empty($product->stripe_transaction_id))
+                                                        <a href="{{ URL::route('frontend.user.product-exam', $product->id) }}" class="btn btn-primary"> Continue </a>
+                                            
+                                                    @else
+                                                        <a href="{{ URL::route('frontend.modules.show-order', $product->id) }}" class="btn btn-primary"> Buy for ${{ substr_replace($product->price, '.', 2, 0) }}</a>
+                                                    @endif
+                                                                                                    
+
+
                                                 
-                                                <a href="{{ URL::route('frontend.modules.show-order', $product->id) }}" class="btn btn-primary"> Buy for ${{ substr_replace($product->price, '.', 2, 0) }}</a>                                                  
+                                                                                                 
                                                   
                                                 </p>
                                             </div>

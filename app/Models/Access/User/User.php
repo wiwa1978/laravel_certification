@@ -61,4 +61,10 @@ class User extends Authenticatable
         parent::__construct($attributes);
         $this->table = config('access.users_table');
     }
+
+    public function purchases()
+    {
+        $this->hasMany(App\Models\Modules\Purchase::class);
+    }
+
 }

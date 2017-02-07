@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Modules\Product;
 use App\Models\Modules\Order;
+use Carbon\Carbon;
 
 class PurchaseController extends Controller
 {
@@ -44,14 +45,12 @@ class PurchaseController extends Controller
     */
 
     public function payWithStripe(Request $request, Product $product)
-    {
+    {    
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         
-
-        //return view('frontend.user.dashboard');
         $token = $request->input('stripeToken'); 
-        
-        
+
+
         return $this->chargeCustomer($product->id, $product->price, $product->name, $token);
     }
  
@@ -73,11 +72,13 @@ class PurchaseController extends Controller
         if (!$this->isStripeCustomer())
         {
             $customer = $this->createStripeCustomer($token);
+            //dd("test1: ".$token);
     
         }
         else
         {
             $customer = \Stripe\Customer::retrieve(access()->user()->stripe_customer_id);
+            //dd("test2: ".$token);
 
         }
  
@@ -103,17 +104,21 @@ class PurchaseController extends Controller
                 "amount" => $product_price,
                 "currency" => "usd",
                 "customer" => $customer->id,
-                "description" => $product_name
+                "description" => $product_name,
+                "metadata" => [
+                    'Purchased product' => $product_name,
+                    'Purchase Date'=> Carbon::now(),
+                ]
             ));
             
         
         } catch(\Stripe\Error\Card $e) {
             return redirect()
                 ->route('frontend.modules.product')
-                ->with('error', 'Your credit card was been declined. Please try again or contact us.');
+                ->withFlashError(trans('strings.frontend.stripe.creditcard_declined'));
     }
  
-        return $this->postStoreOrder($product_id);
+        return $this->postStoreOrder($product_id, $charge->id);
     }
 
     /**
@@ -124,19 +129,19 @@ class PurchaseController extends Controller
     * @return Stripe\Customer $customer
     */
     public function createStripeCustomer($token)
-    {
-
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    {      
  
         $customer = \Stripe\Customer::create(array(
-            "description" => access()->user()->email,
-            "source" => $token
+            "source" => $token,
+            "email" => access()->user()->email,
+            'metadata' => [
+                'First Name' => 'To be updated',
+                'Last Name' => 'To be updated',
+            ]
         ));
         
  
         access()->user()->stripe_customer_id = $customer->id;
-
-        
         access()->user()->save();
  
         return $customer;
@@ -157,21 +162,20 @@ class PurchaseController extends Controller
 
    
     /**
-    * Store a order.
+    * Store the order to Purchase table.
     *
     * @param string $product_name
     * @return redirect()
     */
-    public function postStoreOrder($product_id)
+    public function postStoreOrder($product_id, $charge_id)
     {
-        Order::create([
+        Purchase::create([
             'user_id' => access()->user()->id,
-            'product_id' => $product_id
+            'product_id' => $product_id,
+            'stripe_transaction_id' => $charge_id
         ]);
  
-        return redirect()
-            ->route('frontend.modules.product')
-            ->with('msg', 'Thanks for your purchase!');
+        return redirect()->route('frontend.modules.product')->withFlashSuccess(trans('strings.frontend.stripe.creditcard_success'));
     }
  
 

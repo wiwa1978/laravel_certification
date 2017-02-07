@@ -20,6 +20,12 @@ class ModuleTableSeeder extends Seeder
         }
 
         $this->call(ProductTableSeeder::class);
+        $this->call(PurchaseTableSeeder::class);
+        $this->call(ExamTableSeeder::class);
+        $this->call(QuestionTableSeeder::class);
+        $this->call(OptionTableSeeder::class);
+        $this->call(AnswerTableSeeder::class);
+
 
         if (DB::connection()->getDriverName() == 'mysql') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');

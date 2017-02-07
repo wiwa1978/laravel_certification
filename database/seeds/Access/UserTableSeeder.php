@@ -32,6 +32,7 @@ class UserTableSeeder extends Seeder
         //Add the master administrator, user id of 1
         $users = [
             [
+                'id'                => 1, 
                 'name'              => 'Admin',
                 'email'             => 'admin@gmail.com',
                 'password'          => bcrypt('1234'),
@@ -41,6 +42,7 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
+                'id'                => 2, 
                 'name'              => 'Backend User',
                 'email'             => 'backend@gmail.com',
                 'password'          => bcrypt('1234'),
@@ -50,8 +52,29 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'name'              => 'Default User',
-                'email'             => 'user@gmail.com',
+                'id'                => 3, 
+                'name'              => 'User A',
+                'email'             => 'user_a@gmail.com',
+                'password'          => bcrypt('1234'),
+                'confirmation_code' => md5(uniqid(mt_rand(), true)),
+                'confirmed'         => true,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
+            ],
+            [
+                'id'                => 4, 
+                'name'              => 'User B',
+                'email'             => 'user_b@gmail.com',
+                'password'          => bcrypt('1234'),
+                'confirmation_code' => md5(uniqid(mt_rand(), true)),
+                'confirmed'         => true,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
+            ],
+            [
+                'id'                => 5, 
+                'name'              => 'User C',
+                'email'             => 'user_c@gmail.com',
                 'password'          => bcrypt('1234'),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed'         => true,

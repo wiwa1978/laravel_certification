@@ -4,20 +4,17 @@ namespace App\Models\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Exam extends Model
 {
 	protected $fillable = [ ];
 
-    public function purchases()
+    public function product()
     {
-        return $this->hasMany('App\Models\Modules\Purchase');
+        return $this->belongsTo('App\Models\Modules\Product');
     }
 
-    public function exams()
+    public function questions()
     {
         return $this->hasMany('App\Models\Modules\Exam');
     }
-
-
-
 }
