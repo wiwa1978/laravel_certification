@@ -9,89 +9,94 @@
                 <div class="panel-heading">{{ trans('navs.frontend.modules.result-overview')}}</div>
 
                 <div class="panel-body">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-comments fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">{{ count($correct_answer) }}</div>
+                                                <div>Total correct answers</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-tasks fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">{{ count($wrong_answer) }}</div>
+                                                <div>Total wrong answers</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ $total_questions }}</div>
+                                    <div>Total questions</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ round($percentage, 2) }}%</div>
+                                    <div>Total percentage</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
 
-                       <ul class="list-group text-center">
-                          @if(isset($message))
-                          <li class="list-group-item text-warning">{{$message}}</li>
-                          @endif
-                          @if(isset($correct_answer))
-                          <li class="list-group-item">Correct Answer: <span class="text-success">{{ count($correct_answer) }}</span></li>
-                          @endif
-                          @if(isset($wrong_answer))
-                          <li class="list-group-item">Wrong Answer: <span class="text-danger">{{ count($wrong_answer) }}</span></li>
-                          @endif
-                          @if(isset($percentage))
-                          <li class="list-group-item">Success Percentage: <span class="text-info">{{$percentage}}%</span></li>
-                          @endif
-                    </ul>
-                    <ul class="list-group text-center">
-                        @if(isset($chart) && count($chart) > 0)
-                            <h3>Skill statistics (Based on your correct answer)</h3>
-                            @foreach($chart as $key => $value)
-                                <li class="list-group-item">{{ $key }} : {{ $value }}% @if($value < 40) <span class="text-danger">You need to work on your on your {{ $key }} skills</span>@elseif($value > 40) <span class="text-info">Your {{ $key }} skill is okay!</span>@endif</li>
-                            @endforeach
-                        @endif
-                    </ul>
-
-                    
-                       @if(isset($wrong_answer))
-                            <h4 class="alert alert-danger">Wrong Answers</h4>
-                            @foreach($wrong_answer as $key => $value )
-                                <li class="list-group-item">Question: <b>{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getQuestion($key) }}</b> 
-
-                                <?php $options =  \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getOptions($key);?>
-                                @foreach($options as $option)
-                                        
-                                            @if($option->id == $value )
-                                                <li class="text-danger">{{ $option->option }}</li>
-                                            @else
-                                                <li>{{ $option->option }}</li>
-                                            @endif
-                                     
-                                           
-                                    @endforeach
-                                </li>                    
-                               
-                            @endforeach
-                        @endif
-
-                        @if(isset($correct_answer))
-                        <h4 class="alert alert-info">Correct Answers</h4>
-                        @foreach($correct_answer as $key => $value )
-                            <li class="list-group-item">Question: <b>{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getQuestion($key) }}</b></li>
-                            
-                        @endforeach
-                    @endif
-                       
-                   
-                    
-
-
-
-
-
-
-
-
-
-
+    
 
 
                     @if(isset($wrong_answer) || isset($correct_answer))
-                    <!-- Start of showing the wrong answers with the correct answers -->
-                        @if(isset($wrong_answer))
-                            <h2 class="alert alert-danger">Wrong Answers</h2>
+                    
+                       @if(isset($wrong_answer))
+                            <h4 class="alert alert-danger">Wrong Answers</h4>
+
+                            <ul class="list-group questions">
                             @foreach($wrong_answer as $key => $value )
-                                <h4>{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getQuestion($key) }}</</h4>
-                                <ul class="faq">
-                                    <?php $options =  \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getOptions($key);?>
-                                    <?php $wrong_single_answers = \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getSingleCorrectAnswer($key);?>
-                                    @foreach($options as $option)
-                                        @if(!is_array($value))
+                                <li class="list-group-item">Question: <b>{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getQuestion($key) }}</b>
+                                
+                                <?php $options =  \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getOptions($key);?>
+                                 <?php $wrong_single_answers = \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getSingleCorrectAnswer($key);?>
+                                @foreach($options as $option)
+                                       @if(!is_array($value))
+
                                             @if($option->id == $value )
-                                                <li class="text-danger">{{ $option->option }}</li>
+                                                <li class="list-group-item text-danger">{{ $option->option }}</li>
                                             @else
-                                                <li>{{ $option->option }}</li>
+                                                <!--<li class="list-group-item">{{ $option->option }}</li>-->
                                             @endif
                                         @else
                                             <!-- For multiple values -->
@@ -102,8 +107,7 @@
                                             @endif
                                         @endif
                                     @endforeach
-                                </ul>
-                                <dl class="dl-horizontal">
+                                    <dl>
                                     <dt>Correct Answer:</dt>
                                     @if(count($wrong_single_answers) == 1)
                                     <dd class="text-success">{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getAnswer($wrong_single_answers[0]->option_id)->option }}</dd>
@@ -112,41 +116,55 @@
                                             <dd class="text-success">{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getAnswer($answers->option_id)->option }}</dd>
                                         @endforeach
                                     @endif
-                                </dl>
+                                    </dl>
+                                </li> 
+                               
                             @endforeach
+                            </ul>
                         @endif
-                    <!-- End of showing the wrong answers -->
 
 
-                    <!-- Showing the correct answers -->
-                    @if(isset($correct_answer))
-                        <h2 class="alert alert-info">Correct Answers</h2>
+                       
+
+                       @if(isset($correct_answer))
+                        <h4 class="alert alert-success">Correct Answers</h4>
+                        <ul class="list-group questions">
                         @foreach($correct_answer as $key => $value )
-                            <h4>{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getQuestion($key) }}</</h4>
-                            <ul class="faq">
+                            <li class="list-group-item">Question: <b>{{ \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getQuestion($key) }}</b>
+                           
                                 <?php $options =  \App::make('App\Http\Controllers\Frontend\User\QuestionController')->getOptions($key);?>
                                 @foreach($options as $option)
                                 @if(!is_array($value))
                                     @if($option->id == $value )
-                                        <li class="text-success">{{ $option->option }}</li>
+                                        <li class="list-group-item text-success">Correct answer: {{ $option->option }}</li>
                                     @else
-                                        <li>{{ $option->option }}</li>
+                                        <!--<li class="list-group-item">{{ $option->option }}</li>-->
                                     @endif
                                     @else
                                         <!-- For multiple values -->
                                         @if(in_array($option->id,$value))
-                                            <li class="text-success"> {{ $option->option }} </li>
+                                            <li class="list-group-item text-success"> {{ $option->option }} </li>
                                         @else
-                                            <li>{{ $option->option }}</li>
+                                            <li class="list-group-item">{{ $option->option }}</li>
                                         @endif
                                     @endif
                                 @endforeach
-                            </ul>
+
+                            </li>
+                             <dl>
+                                    <dt></dt>
+                                    
+                                    
+                                    </dl>
                         @endforeach
+                        
+                        </li>
                     @endif
-                    <!-- End of showing the correct answers -->
+         
+             
                 @else
-                    <h4 class="text-center">Please go back to select a <a href="{{ url('/') }}"> quiz </a></h4>
+                    
+                    <h4 class="text-center">Please go back to select an exam </a></h4>
                 @endif
 
                 </div><!--panel body-->

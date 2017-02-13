@@ -12,9 +12,6 @@
                     @if(isset($questions))
                         <form class="" action="{{ URL::route('frontend.user.exam-result', $exam->id) }}" method="post">
 
-
-
-
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="exam_id" value="{{ $exam->id }}">
                             <ul class="list-group questions">
@@ -39,12 +36,12 @@
                                 @endforeach
                                 <div class="form-group final-submit text-center">
                                     <h4>Click the below button to see your result!</h4>
-                                    <button type="submit" name="submit" class="btn btn-success">See Result!</button>
+                                    <button type="submit" name="submit" class="btn btn-success">See results for this exam</button>
                                 </div>
                             </ul>
                         </form>
                     @else
-                    <h4 class="text-warning text-center">Please go back to select a <a href="{{ url('/') }}"> quiz </a></h4>
+                    <h4 class="text-warning text-center">Please go back to select a <a href"{{ URL::route('frontend.user.products') }}> exam </a></h4>
                     @endif
 
                 </div><!--panel body-->

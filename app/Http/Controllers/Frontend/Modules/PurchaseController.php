@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Modules\Product;
 use App\Models\Modules\Order;
+use App\Models\Modules\Purchase;
 use Carbon\Carbon;
 
 class PurchaseController extends Controller
@@ -19,7 +20,8 @@ class PurchaseController extends Controller
     */
     public function showOrder(Product $product)
     {
-        return view('frontend.modules.order', ['product' => $product]);
+        $user = access()->user();
+        return view('frontend.modules.order', ['product' => $product, 'user' => $user] );
     }
 
 
@@ -50,6 +52,8 @@ class PurchaseController extends Controller
         
         $token = $request->input('stripeToken'); 
 
+        dd($token);
+
 
         return $this->chargeCustomer($product->id, $product->price, $product->name, $token);
     }
@@ -72,13 +76,13 @@ class PurchaseController extends Controller
         if (!$this->isStripeCustomer())
         {
             $customer = $this->createStripeCustomer($token);
-            //dd("test1: ".$token);
+            dd("test1: ".$customer);
     
         }
         else
         {
             $customer = \Stripe\Customer::retrieve(access()->user()->stripe_customer_id);
-            //dd("test2: ".$token);
+            dd("test2: ".$customer);
 
         }
  
@@ -100,6 +104,8 @@ class PurchaseController extends Controller
     {
        
         try {
+            
+
             $charge = \Stripe\Charge::create(array(
                 "amount" => $product_price,
                 "currency" => "usd",
@@ -110,6 +116,7 @@ class PurchaseController extends Controller
                     'Purchase Date'=> Carbon::now(),
                 ]
             ));
+        
             
         
         } catch(\Stripe\Error\Card $e) {
@@ -118,7 +125,7 @@ class PurchaseController extends Controller
                 ->withFlashError(trans('strings.frontend.stripe.creditcard_declined'));
     }
  
-        return $this->postStoreOrder($product_id, $charge->id);
+    return $this->postStoreOrder($product_id, $charge->id);
     }
 
     /**
@@ -140,7 +147,9 @@ class PurchaseController extends Controller
             ]
         ));
         
- 
+
+
+
         access()->user()->stripe_customer_id = $customer->id;
         access()->user()->save();
  

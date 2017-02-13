@@ -15,15 +15,17 @@
                           <div class="col-md-6 col-md-offset-3">
 
 
-                             <form action="{{ route('frontend.modules.order-purchase', $product->id) }}" method="POST">
-                            {{ csrf_field() }}
+                             <form id="myform" action="{{ route('frontend.modules.order-purchase', $product) }}" method="POST">
+                                {{ csrf_field() }}
                                 <p><b>Your selected product:</b></p>
                                 <p>{{ $product->name }}</p>
                                 <p><b>Price</b></p>
                                 <p>Buy for ${{ substr_replace($product->price, '.', 2, 0) }}</p>
+                               <p>{{ $user->email}}</p>
                                 <p>
-                                    <button class="btn btn-primary" type="submit" value="Place Order">Place Order</button>
-                                    <p><button class="btn btn-primary btn-large" id="stripe-button">Pay With Card</button></p>
+                                    <input type="hidden" name="stripeToken" id="stripeToken"/>
+                                    {!! Form::submit('Pay With Card', ['class' => 'btn btn-primary btn-order', 'id' =>
+    'stripe-button', 'style' => 'margin-bottom: 10px;']) !!}
                                 </p>
 
 
@@ -47,6 +49,7 @@
 
 
 
+
 @section('after-scripts')
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
@@ -60,17 +63,20 @@
             token: function(token, args) {
                 document.getElementById('stripe-button').setAttribute('disabled','disabled');
                 document.getElementById('stripeToken').setAttribute('value',token.id);
+                document.getElementById("myform").submit();
             }
         });
 
         document.getElementById('stripe-button').addEventListener('click', function(e) {
             handler.open({
-                amount: {{ $product->price }}
+                amount: {{ $product->price }},
+                email: {{ $user->email }} 
             });
             e.preventDefault();
         });
     </script>
 @endsection
+
 
 
 

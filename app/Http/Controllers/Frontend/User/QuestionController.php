@@ -57,6 +57,13 @@ class QuestionController extends Controller
 		return $question->question;
 	}
 
+	    //Get the question name
+	public function getTotalQuestions($exam_id)
+	{
+		$count = Question::where('exam_id', $exam_id)->count();
+		return $count;
+	}
+
 	public function multipleAnswersPerQuestion($question_id)
 	{
 		$answers = \DB::table('answers')->where('question_id','=',$question_id)->get();
@@ -70,6 +77,7 @@ class QuestionController extends Controller
 	public function calculateResultforExam(Request $req, Exam $exam)
 	{
 		$input = $req->all();
+		$total_questions = $this->getTotalQuestions($exam->id);
 		if(isset($input['option'])){
 			$array_of_options = $input['option'];
 
@@ -162,12 +170,14 @@ class QuestionController extends Controller
 
 			//return view('frontend.modules.result')->with(['chart' => $chart,'user_given_inputs' => $user_given_inputs,'percentage' => $success_percentage,'correct_answer' => $correct_answer,'wrong_answer' => $wrong_answer]);
 
-			return view('frontend.modules.result')->with(['user_given_inputs' => $user_given_inputs,'percentage' => $success_percentage,'correct_answer' => $correct_answer,'wrong_answer' => $wrong_answer]);
+			return view('frontend.modules.result')->with(['user_given_inputs' => $user_given_inputs, 'total_questions' => $total_questions,'percentage' => $success_percentage,'correct_answer' => $correct_answer,'wrong_answer' => $wrong_answer]);
 		}
 		else
 		{
-			return view('frontend.user.dashboard')
-				->withFlashError(trans('You did not answer any question. Try again!'));
+			//return redirect()->route('frontend.user.dashboard')
+				//->withFlashError(trans('You did not answer any question. Try again!'));
+
+			return redirect()->route('frontend.user.questions-exam', $exam->id)->withFlashDanger('You did not answer any question. Try again!');
 		}
 	}
 		    
