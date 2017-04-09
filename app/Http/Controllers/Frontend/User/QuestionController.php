@@ -53,7 +53,7 @@ class QuestionController extends Controller
         */
         Session::put('first', '1');
 
-        dd(Session::get('first'));
+        
        
         $questions = Question::inRandomOrder()->where('exam_id', '=', $exam->id )->with(['options' => function($query) {
         	$query->orderBy(DB::raw('RAND()'));
