@@ -67,10 +67,12 @@
             }
         });
 
+
         document.getElementById('stripe-button').addEventListener('click', function(e) {
             handler.open({
-                amount: {{ $product->price }},
-                email: {{ $user->email }} 
+                amount: '{{ $product->price }}',
+                email: '{{ $user->email }}',
+                currency: 'EUR'
             });
             e.preventDefault();
         });

@@ -8,6 +8,7 @@ use App\Models\Modules\Question;
 use App\Models\Modules\Exam;
 use App\Models\Modules\Answer;
 use App\Models\Modules\Option;
+use Session;
 
 use DB;
 
@@ -39,15 +40,28 @@ class QuestionController extends Controller
 	}
 
     public function getSingleExam(Exam $exam)
-    { 	      
+    { 	 
+        /* 
     	$question_ids = \DB::table('questions')->select('id')->where('exam_id','=',$exam->id)->get();
     	
     	foreach($question_ids as $question) 
     	{
-    		$options[$this->getQuestion($question->id)][] = \DB::table('options')->where('question_id','=',$question->id)->select('id','option','question_id')->get();
+    		$questions[$this->getQuestion($question->id)][] = \DB::table('options')->where('question_id','=',$question->id)->select('id','option','question_id')->get();
 
     	}
-        return view('frontend.modules.questions', ['questions' => $options,'exam' => $exam]);
+        return view('frontend.modules.questions', ['questions' => $questions,'exam' => $exam]);
+        */
+        Session::put('first', '1');
+
+        dd(Session::get('first'));
+       
+        $questions = Question::inRandomOrder()->where('exam_id', '=', $exam->id )->with(['options' => function($query) {
+        	$query->orderBy(DB::raw('RAND()'));
+        }])->simplePaginate(1);
+        //dd($questions);User::->get();
+    	
+    	
+        return view('frontend.modules.question-wizard', ['questions' => $questions,'exam' => $exam]);
     }
 
     //Get the question name

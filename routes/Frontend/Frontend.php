@@ -55,5 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('exam/result/{exam}', 'QuestionController@calculateResultforExam')->name('exam-result');
 
 
+
+
     });
 });

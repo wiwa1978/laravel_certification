@@ -52,7 +52,7 @@ class PurchaseController extends Controller
         
         $token = $request->input('stripeToken'); 
 
-        dd($token);
+        //dd($token);
 
 
         return $this->chargeCustomer($product->id, $product->price, $product->name, $token);
@@ -76,13 +76,13 @@ class PurchaseController extends Controller
         if (!$this->isStripeCustomer())
         {
             $customer = $this->createStripeCustomer($token);
-            dd("test1: ".$customer);
+            //dd("test1: ".$customer);
     
         }
         else
         {
             $customer = \Stripe\Customer::retrieve(access()->user()->stripe_customer_id);
-            dd("test2: ".$customer);
+            //dd("test2: ".$customer);
 
         }
  
