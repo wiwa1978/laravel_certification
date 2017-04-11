@@ -17,7 +17,7 @@ class CreatePurchasesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('product_id');
+            $table->integer('certification_id');
             $table->string('stripe_transaction_id');
             $table->timestamps();
         });

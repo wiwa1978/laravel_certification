@@ -32,11 +32,25 @@ return [
             'profile'         => 'Profile',
         ],
         //Added by Wim
-        'modules' => [
-            'product'               => 'Product',
-            'product-overview'      => 'Product overview: all certifications',
-            'exam-overview'         => 'Exam overview',
+        'certification' => [
+            'title'                     => 'Certifications',
+            'certification-overview'    => 'Certification overview: all certifications',
+        ],
+
+        'exam' => [
+            'title'                 => 'Exam',
+            'exam-overview'         => 'Exam overview: all exams',
+        ],
+
+        'question' => [
+            'title'              => 'Question',
+            'questions'             => 'Questions',
             'question-overview'     => 'Question overview',
-        ]
+        ],
+
+        'result' => [
+            'title'              => 'Results',
+            'result-overview'     => 'Results overview',
+        ],
     ],
 ];

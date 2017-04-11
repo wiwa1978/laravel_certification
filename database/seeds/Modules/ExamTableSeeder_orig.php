@@ -25,7 +25,8 @@ class ExamTableSeeder extends Seeder
         $exams = [
             [
                 'id'                    => 1000,   
-                'product_id'            => 100,
+                'certification_id'      => 100,
+                'category_id'           => 1, 
                 'exam_name'             => 'AWS Solution Architect Exam - Practice',
                 'exam_code'             => 'AWS-SA-PRACTICE',
                 'description'           => 'Questions relevant to the exam AWS Solution Architect Exam',
@@ -34,7 +35,8 @@ class ExamTableSeeder extends Seeder
             ],
             [
                 'id'                    => 1001,   
-                'product_id'            => 100,
+                'certification_id'      => 100,
+                'category_id'           => 1, 
                 'exam_name'             => 'AWS Solution Architect Exam - Real',
                 'exam_code'             => 'AWS-SA-REAL',
                 'description'           => 'Questions relevant to the exam AWS Solution Architect Exam',
@@ -43,7 +45,8 @@ class ExamTableSeeder extends Seeder
             ],
             [
                 'id'                    => 1002,   
-                'product_id'            => 101,
+                'certification_id'      => 101,
+                'category_id'           => 1, 
                 'exam_name'             => 'AWS Sysops Architect Exam - Practice',
                 'exam_code'             => 'AWS-SYS-PRACTICE',
                 'description'           => 'Questions relevant to the exam AWS Sysops Architect Exam',
@@ -52,7 +55,8 @@ class ExamTableSeeder extends Seeder
             ],
             [
                 'id'                    => 1003,   
-                'product_id'            => 101,
+                'certification_id'      => 101,
+                'category_id'           => 2, 
                 'exam_name'             => 'AWS Sysops Architect Exam - Real',
                 'exam_code'             => 'AWS-SYS-REAL',
                 'description'           => 'Questions relevant to the exam AWS Sysops Architect Exam',

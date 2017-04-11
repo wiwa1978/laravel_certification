@@ -37,6 +37,11 @@ return [
             ],
         ],
 
+        'questions' => [
+            'all' => 'All Questions',
+            'create' => 'Create Question'
+        ],
+
         'log-viewer' => [
             'main'      => 'Log Viewer',
             'dashboard' => 'Dashboard',
@@ -47,6 +52,7 @@ return [
             'dashboard' => 'Dashboard',
             'general'   => 'General',
             'system'    => 'System',
+            'questions'  => 'Questions'
         ],
     ],
 

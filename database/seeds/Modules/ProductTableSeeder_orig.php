@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * Class UserTableSeeder.
  */
-class ProductTableSeeder extends Seeder
+class CertificationTableSeeder extends Seeder
 {
     /**
      * Run the database seed.
@@ -22,7 +22,7 @@ class ProductTableSeeder extends Seeder
 
         //Add some products
     
-        $products = [
+        $certifications = [
             [
                 'id'                    => 100,   
                 'name'                  => 'AWS Solution Architect - Associate',
@@ -65,7 +65,7 @@ class ProductTableSeeder extends Seeder
             ],
         ];
 
-        DB::table('products')->insert($products);
+        DB::table('certifications')->insert($certifications);
 
         if (DB::connection()->getDriverName() == 'mysql') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');

@@ -25,16 +25,18 @@ class ExamTableSeeder extends Seeder
         $exams = [
             [
                 'id'                    => 1000,   
-                'product_id'            => 100,
+                'certification_id'      => 100,
+                'category_id'           => 1,    
                 'exam_name'             => 'Exam 1000',
-                'exam_code'             => 'Exam 1000',
+                'exam_code'             => 'Exam 1000',  
                 'description'           => 'Questions relevant to the Exam 1000',
                 'created_at'            => Carbon::now(),
                 'updated_at'            => Carbon::now(),
             ],
             [
                 'id'                    => 1001,   
-                'product_id'            => 100,
+                'certification_id'      => 100,
+                'category_id'           => 1, 
                 'exam_name'             => 'Exam 1001',
                 'exam_code'             => 'Exam 1001',
                 'description'           => 'Questions relevant to the Exam 1001',
@@ -43,7 +45,8 @@ class ExamTableSeeder extends Seeder
             ],
             [
                 'id'                    => 1002,   
-                'product_id'            => 101,
+                'certification_id'      => 101,
+                'category_id'           => 2,
                 'exam_name'             => 'Exam 1002',
                 'exam_code'             => 'Exam 1002',
                 'description'           => 'Questions relevant to the Exam 1002',
@@ -52,7 +55,8 @@ class ExamTableSeeder extends Seeder
             ],
             [
                 'id'                    => 1003,   
-                'product_id'            => 101,
+                'certification_id'      => 101,
+                'category_id'           => 2,    
                 'exam_name'             => 'Exam 1003',
                 'exam_code'             => 'Exam 1003',
                 'description'           => 'Questions relevant to the Exam 1003',

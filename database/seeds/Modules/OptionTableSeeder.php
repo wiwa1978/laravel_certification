@@ -546,7 +546,7 @@ class OptionTableSeeder extends Seeder
                 'question_id'           => 10029,
                 'option'                => '44',
                 'created_at'            => Carbon::now(),
-                'updated_at'            => Carbon::now()
+                'updated_at'            => Carbon::now(),
             ]
 
 

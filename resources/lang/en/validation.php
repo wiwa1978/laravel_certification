@@ -151,6 +151,10 @@ return [
                     'send_confirmation_email' => 'Send Confirmation E-mail',
                 ],
             ],
+
+            'questions' => [
+                    'name'                   => 'Name',
+                ],
         ],
 
         'frontend' => [

@@ -37,6 +37,19 @@
                 </a>
             </li>
 
+            <li class="{{ Active::pattern('admin/questions') }}">
+                <a href="{{ route('admin.questions.index') }}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>{{ trans('menus.backend.sidebar.questions') }}</span>
+                </a>
+            </li>
+
+      
+
+            <li class="{{ Active::pattern('admin/questions') }}">
+              
+            </li>
+
             @permissions(['manage-users', 'manage-roles'])
                 <li class="{{ Active::pattern('admin/access/*') }} treeview">
                     <a href="#">

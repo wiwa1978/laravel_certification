@@ -97,6 +97,16 @@ return [
                 'view' => 'View User',
             ],
         ],
+        'questions' => [
+            'management'    => 'Questions Management',
+            'create'        => 'Create Question',
+            'edit'          => 'Edit Question',
+            'table'     => [
+                'id'        => 'ID',
+                'question'  => 'Question'
+            ]
+                    
+        ],
     ],
 
     'frontend' => [

@@ -30,7 +30,7 @@
 
                 @if ($logged_in_user)
                     <li>{{ link_to_route('frontend.user.dashboard', trans('navs.frontend.dashboard')) }}</li>
-                    <li>{{ link_to_route('frontend.modules.product', trans('navs.frontend.modules.product')) }}</li>
+                    <li>{{ link_to_route('frontend.certification.index', trans('navs.frontend.certification.title')) }}</li>
                 @endif
 
                 @if (! $logged_in_user)

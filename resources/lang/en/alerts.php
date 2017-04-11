@@ -29,5 +29,10 @@ return [
             'updated'             => 'The user was successfully updated.',
             'updated_password'    => "The user's password was successfully updated.",
         ],
+        'questions' => [
+            'created' => 'The question was successfully created.',
+            'updated' => 'The question was successfully updated.',
+            'deleted' => 'The question was successfully deleted.'
+        ]
     ],
 ];
