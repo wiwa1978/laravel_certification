@@ -34,6 +34,7 @@ class QuestionTableController extends Controller
     {
         return Datatables::of($this->questions->getForDataTable())
             ->escapeColumns(['question'])
+           
             ->addColumn('actions', function ($question) {
                 return $question->action_buttons;
             })

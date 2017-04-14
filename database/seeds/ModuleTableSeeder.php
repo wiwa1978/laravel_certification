@@ -22,9 +22,9 @@ class ModuleTableSeeder extends Seeder
 
         $this->call(CategoryTableSeeder::class);
         $this->call(TagTableSeeder::class);
-        $this->call(CertificationTableSeeder::class);
+        $this->call(Certification1TableSeeder::class);
         $this->call(PurchaseTableSeeder::class);
-        $this->call(ExamTableSeeder::class);
+        $this->call(Exam1TableSeeder::class);
         $this->call(QuestionTableSeeder::class);
         $this->call(OptionTableSeeder::class);
         $this->call(AnswerTableSeeder::class);

@@ -42,6 +42,11 @@ return [
             'create' => 'Create Question'
         ],
 
+        'exams' => [
+            'all' => 'All Exams',
+            'create' => 'Create Exam'
+        ],
+
         'log-viewer' => [
             'main'      => 'Log Viewer',
             'dashboard' => 'Dashboard',
@@ -49,10 +54,12 @@ return [
         ],
 
         'sidebar' => [
-            'dashboard' => 'Dashboard',
-            'general'   => 'General',
-            'system'    => 'System',
-            'questions'  => 'Questions'
+            'dashboard'         => 'Dashboard',
+            'general'           => 'General',
+            'system'            => 'System',
+            'questions'         => 'Questions',
+            'exams'             => 'Exams',
+            'certifications'    => 'Certifications',
         ],
     ],
 

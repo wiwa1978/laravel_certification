@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Questions;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question\Question;
+use App\Models\Exam\Exam;
 use App\Repositories\Backend\Questions\QuestionRepository;
 use App\Http\Requests\Backend\Questions\QuestionRequest;
 
@@ -42,7 +43,9 @@ class QuestionController extends Controller
      */
     public function create(QuestionRequest $request)
     {
-        return view('backend.questions.create');
+        $exams = Exam::orderBy('exam_name')->pluck('exam_name', 'id');
+
+        return view('backend.questions.create', ['exams' => $exams]);
     }
 
     /**
@@ -53,8 +56,8 @@ class QuestionController extends Controller
     public function store(QuestionRequest $request)
     {
         $question = new Question(array(
-            //'exam_id' => $request->get('exam_id'),
-            'exam_id' => 1000,
+            'exam_id' => $request->get('exam_id'),
+            //'exam_id' => 1000,
             'question' => $request->get('question')
         ));
         $question->save();

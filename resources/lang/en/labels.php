@@ -101,13 +101,31 @@ return [
             'management'    => 'Questions Management',
             'create'        => 'Create Question',
             'edit'          => 'Edit Question',
-            'table'     => [
+            'show'          => 'Show Question',
+            'table'         => [
                 'id'        => 'ID',
                 'question'  => 'Question'
             ]
                     
         ],
+        'exams' => [
+            'management'    => 'Exams Management',
+            'create'        => 'Create Exam',
+            'edit'          => 'Edit Exam',
+            'show'          => 'Show Exam',
+            'table'         => [
+                'id'        => 'Exam ID',
+                'certification_id'  => 'Certification ID', 
+                'category_id'       => 'Category ID', 
+                'exam_name'         => 'Exam Name', 
+                'exam_code'         => 'Exam Code', 
+
+            ]
+                    
+        ],
     ],
+
+
 
     'frontend' => [
 

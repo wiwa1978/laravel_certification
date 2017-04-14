@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * Class UserTableSeeder.
  */
-class CertificationTableSeeder extends Seeder
+class Certification2TableSeeder extends Seeder
 {
     /**
      * Run the database seed.

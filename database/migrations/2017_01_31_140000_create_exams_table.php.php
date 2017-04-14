@@ -17,8 +17,8 @@ class CreateExamsTable extends Migration
             $table->increments('id');
             $table->integer('certification_id')->unsigned()->index();
             $table->foreign('certification_id')->references('id')->on('certifications')->onDelete('cascade');
-            $table->integer('category_id')->unsigned()->index();
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('exam_name');
             $table->string('exam_code');
             $table->string('description');

@@ -153,7 +153,23 @@ return [
             ],
 
             'questions' => [
-                    'name'                   => 'Name',
+                    'question'                => 'Question',
+                    'question-id'             => 'Question ID',
+                ],
+
+            'exams' => [
+                    'exam-id'                 => 'Exam ID',
+                    'exam_name'               => 'Exam Name',
+                    'exam_code'               => 'Exam Code',
+                    'description'             => 'Description' 
+                ],
+
+            'certification' => [
+                    'certification-id'       => 'Certification ID',
+                ],
+
+            'category' => [
+                    'category-id'       => 'Category ID',
                 ],
         ],
 

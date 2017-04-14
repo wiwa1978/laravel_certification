@@ -33,6 +33,11 @@ return [
             'created' => 'The question was successfully created.',
             'updated' => 'The question was successfully updated.',
             'deleted' => 'The question was successfully deleted.'
+        ],
+        'exams' => [
+            'created' => 'The exam was successfully created.',
+            'updated' => 'The exam was successfully updated.',
+            'deleted' => 'The exam was successfully deleted.'
         ]
     ],
 ];

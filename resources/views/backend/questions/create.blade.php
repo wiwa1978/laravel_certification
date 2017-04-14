@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    {{ Form::open(['route' => 'admin.questions.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'POST', 'id' => 'create-country']) }}
+    {{ Form::open(['route' => 'admin.questions.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'POST', 'id' => 'create-question']) }}
 
         <div class="box box-success">
             <div class="box-header with-border">
@@ -23,15 +23,29 @@
 
             <div class="box-body">
                 <div class="form-group">
-                    {{ Form::label('name', trans('validation.attributes.backend.questions.name'), ['class' => 'col-lg-2 control-label']) }}
+                        {{ Form::label('exam_id', trans('validation.attributes.backend.exams.exam-id'), ['class' => 'col-lg-2 control-label']) }}
+
+                        <div class="col-lg-10">
+                            {{ Form::select('exam_id', $exams, null, ['class' => 'form-control'] ) }}
+                        </div><!--col-lg-3-->
+                </div><!--form control-->
+
+       
+                <div class="form-group">
+                    {{ Form::label('questin', trans('validation.attributes.backend.questions.question'), ['class' => 'col-lg-2 control-label']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::text('question', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.questions.name')]) }}
+                        {{ Form::text('question', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.questions.question')]) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
 
             </div><!-- /.box-body -->
         </div><!--box-->
+
+
+
+
+
 
         <div class="box box-success">
             <div class="box-body">

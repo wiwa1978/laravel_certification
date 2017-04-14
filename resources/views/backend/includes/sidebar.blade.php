@@ -37,12 +37,23 @@
                 </a>
             </li>
 
+       
+
+             <li class="{{ Active::pattern('admin/exams') }}">
+                <a href="{{ route('admin.exams.index') }}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>{{ trans('menus.backend.sidebar.exams') }}</span>
+                </a>
+            </li>
+            
             <li class="{{ Active::pattern('admin/questions') }}">
                 <a href="{{ route('admin.questions.index') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>{{ trans('menus.backend.sidebar.questions') }}</span>
                 </a>
             </li>
+
+      
 
       
 
